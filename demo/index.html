@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>blaze-colors library demo</title>
+    <meta charset="UTF-8">
+    <style>
+        .color-box {
+            width: 5rem;
+            height: 5rem;
+            line-height: 5rem;
+            border-radius: 0.5rem;
+            display: inline-block;
+            color: white;
+            vertical-align: top;
+            text-align: center;
+        }
+        .symbol {
+            line-height: 5em;
+            display: inline-block;
+            vertical-align: top;
+        }
+    </style>
+    <script src="../dist/blaze-colors.js"></script>
+    <script>
+        var orangeColor = {
+            red: 255,
+            green: 64,
+            blue: 0
+        }
+        var blueColor = {
+            red: 0,
+            green: 64,
+            blue: 255
+        }
+
+        window.onload = function () {
+            var hashColor1 = BlazeColors.toHashCode(orangeColor);
+            var hashColor2 = BlazeColors.toHashCode(blueColor);
+            var hashColor3 = BlazeColors.toHashCode(BlazeColors.mix(orangeColor, blueColor));
+            var colorBoxA = document.getElementById('colorA');
+            var colorBoxB = document.getElementById('colorB');
+            var colorBoxC = document.getElementById('colorC');
+            
+            colorBoxA.style.background = hashColor1;
+            colorBoxA.innerText = hashColor1;
+            colorBoxB.style.background = hashColor2;
+            colorBoxB.innerText = hashColor2;
+            colorBoxC.style.background = hashColor3;
+            colorBoxC.innerText = hashColor3;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>BlazeColors library demo</h1>
+    <h2>Example 1</h2>
+    <p>Used functions: <i>mix</i>, <i>toHashCode</i></p>
+    <div id="colorA" class="color-box"></div>
+    <div class="symbol">&oplus;</div>
+    <div id="colorB" class="color-box"></div>
+    <div class="symbol">=</div>
+    <div id="colorC" class="color-box"></div>
+</body>
+
+</html>

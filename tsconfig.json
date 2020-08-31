@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "outFile": "dist/blaze-colors.js"
+    },
+    "include": [
+        "src/**/*"
+    ]
+}
