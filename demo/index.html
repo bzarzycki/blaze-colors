@@ -15,6 +15,7 @@
             vertical-align: top;
             text-align: center;
         }
+
         .symbol {
             line-height: 5em;
             display: inline-block;
@@ -41,13 +42,16 @@
             var colorBoxA = document.getElementById('colorA');
             var colorBoxB = document.getElementById('colorB');
             var colorBoxC = document.getElementById('colorC');
-            
+
             colorBoxA.style.background = hashColor1;
             colorBoxA.innerText = hashColor1;
             colorBoxB.style.background = hashColor2;
             colorBoxB.innerText = hashColor2;
             colorBoxC.style.background = hashColor3;
             colorBoxC.innerText = hashColor3;
+
+            document.getElementById('colorD').style.background = BlazeColors.toHashCode(orangeColor);
+            document.getElementById('colorE').style.background = BlazeColors.toHashCode(BlazeColors.invert(orangeColor));
         }
     </script>
 </head>
@@ -61,6 +65,11 @@
     <div id="colorB" class="color-box"></div>
     <div class="symbol">=</div>
     <div id="colorC" class="color-box"></div>
+    <h2>Example 2</h2>
+    <p>Used function: <i>invert</i></p>
+    <div id="colorD" class="color-box"></div>
+    <div class="symbol">!=</div>
+    <div id="colorE" class="color-box"></div>
 </body>
 
 </html>

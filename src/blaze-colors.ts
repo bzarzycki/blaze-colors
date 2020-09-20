@@ -1,6 +1,8 @@
 namespace BlazeColors {
 
-    export type Color = {
+    export const BYTE_MAX = 255;
+
+    export interface Color {
         red: number;
         green: number;
         blue: number;
@@ -15,7 +17,7 @@ namespace BlazeColors {
     }
 
     function mixChannels(c1: number, c2: number, weight: number): number {
-        return Math.round(c2 + (c1 - c2) * weight);
+        return Math.round(c2 + weight * (c1 - c2));
     }
 
     export function mix(color1: Color, color2: Color, weight: number = 0.5): Color {
@@ -28,6 +30,14 @@ namespace BlazeColors {
 
     export function toHashCode(color: Color): string {
         return "#" + toHash(color.red) + toHash(color.green) + toHash(color.blue);
+    }
+
+    export function invert(color: Color): Color {
+        return {
+            red: BYTE_MAX - color.red,
+            green: BYTE_MAX - color.green,
+            blue: BYTE_MAX - color.blue
+        }
     }
 
 }
