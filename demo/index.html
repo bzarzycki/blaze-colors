@@ -5,15 +5,26 @@
     <title>blaze-colors library demo</title>
     <meta charset="UTF-8">
     <style>
-        .color-box {
-            width: 5rem;
-            height: 5rem;
-            line-height: 5rem;
+        .color-box,
+        .color-box-wide {
             border-radius: 0.5rem;
             display: inline-block;
             color: white;
             vertical-align: top;
             text-align: center;
+            border: 1px solid black;
+        }
+
+        .color-box {
+            width: 5rem;
+            height: 5rem;
+            line-height: 5rem;
+        }
+
+        .color-box-wide {
+            width: 10rem;
+            height: 5rem;
+            line-height: 5rem;
         }
 
         .symbol {
@@ -24,52 +35,52 @@
     </style>
     <script src="../dist/blaze-colors.js"></script>
     <script>
-        var orangeColor = {
-            red: 255,
-            green: 64,
-            blue: 0
-        }
-        var blueColor = {
-            red: 0,
-            green: 64,
-            blue: 255
+        var exampleColor1 = BlazeColors.randomColor();
+        var exampleColor2 = BlazeColors.randomColor();
+        var exampleColor3 = BlazeColors.randomColor();
+
+        function createColorBox(elemId, color) {
+            var elem = document.getElementById(elemId);
+            elem.innerText = color;
+            elem.style.background = color;
         }
 
         window.onload = function () {
-            var hashColor1 = BlazeColors.toHashCode(orangeColor);
-            var hashColor2 = BlazeColors.toHashCode(blueColor);
-            var hashColor3 = BlazeColors.toHashCode(BlazeColors.mix(orangeColor, blueColor));
-            var colorBoxA = document.getElementById('colorA');
-            var colorBoxB = document.getElementById('colorB');
-            var colorBoxC = document.getElementById('colorC');
+            var BC = BlazeColors;
+            var hashColor1 = BC.toHashCode(exampleColor1);
+            var hashColor2 = BC.toHashCode(exampleColor2);
+            var hashColor3 = BC.toHashCode(BC.mix(exampleColor1, exampleColor2));
 
-            colorBoxA.style.background = hashColor1;
-            colorBoxA.innerText = hashColor1;
-            colorBoxB.style.background = hashColor2;
-            colorBoxB.innerText = hashColor2;
-            colorBoxC.style.background = hashColor3;
-            colorBoxC.innerText = hashColor3;
-
-            document.getElementById('colorD').style.background = BlazeColors.toHashCode(orangeColor);
-            document.getElementById('colorE').style.background = BlazeColors.toHashCode(BlazeColors.invert(orangeColor));
+            createColorBox('colorA', hashColor1);
+            createColorBox('colorB', hashColor2);
+            createColorBox('colorC', hashColor3);
+            createColorBox('colorD', BC.toHashCode(exampleColor3));
+            createColorBox('colorE', BC.toHashCode(BC.invert(exampleColor3)));
+            createColorBox('colorF', BC.toStringRGB(exampleColor1));
+            createColorBox('colorG', BC.toStringRGB(exampleColor2));
+            document.getElementById('eucDistExample').innerHTML = ' = ' + BC.euclideanDistance(exampleColor1, exampleColor2);
         }
     </script>
 </head>
 
 <body>
     <h1>BlazeColors library demo</h1>
-    <h2>Example 1</h2>
-    <p>Used functions: <i>mix</i>, <i>toHashCode</i></p>
+    <h2>Mixing</h2>
     <div id="colorA" class="color-box"></div>
-    <div class="symbol">&oplus;</div>
+    <div class="symbol">mixed with</div>
     <div id="colorB" class="color-box"></div>
-    <div class="symbol">=</div>
+    <div class="symbol">gives</div>
     <div id="colorC" class="color-box"></div>
-    <h2>Example 2</h2>
-    <p>Used function: <i>invert</i></p>
+    <h2>Inversion</h2>
     <div id="colorD" class="color-box"></div>
-    <div class="symbol">!=</div>
+    <div class="symbol">inverted</div>
     <div id="colorE" class="color-box"></div>
+    <h2>Euclidean distance</h2>
+    <div class="symbol">between</div>
+    <div id="colorF" class="color-box-wide"></div>
+    <div class="symbol">and</div>
+    <div id="colorG" class="color-box-wide"></div>
+    <span class="symbol" id="eucDistExample"></span>
 </body>
 
 </html>
